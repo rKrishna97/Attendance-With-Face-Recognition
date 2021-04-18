@@ -1,8 +1,9 @@
 from datetime import datetime
 
-class App_logger:
+
+class AppLogger:
     def __init__(self):
-        pass 
+        pass
 
     def log(self, file_object, log_message):
         self.now = datetime.now()

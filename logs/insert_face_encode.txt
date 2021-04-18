@@ -1,0 +1,10 @@
+2021-04-18/20:06:07		Inserting face encode started
+2021-04-18/20:06:07		Name : .gitignore >>> Inserting face encode to database
+2021-04-18/20:41:06		Inserting face encode started
+2021-04-18/20:41:06		Name : Chris Evans >>> Inserting face encode to database
+2021-04-18/20:43:57		Inserting face encode started
+2021-04-18/20:43:57		Name : Chris Evans >>> Inserting face encode to database
+2021-04-18/20:43:58		Name : Chris_Hemsworth >>> Inserting face encode to database
+2021-04-18/20:43:58		Name : Robert_Downey_Jr >>> Inserting face encode to database
+2021-04-18/20:43:58		Name : Tom_Holland >>> Inserting face encode to database
+2021-04-18/20:43:58		Inserting Face Encode

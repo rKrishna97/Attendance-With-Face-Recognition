@@ -4,20 +4,22 @@ import face_recognition
 from cv2 import cv2
 import shutil
 
-class collect_image_files:
+
+class CollectImageFiles:
     def __init__(self, image_path):
         self.image_path = image_path
+        self.all_names = [i for i in os.listdir(self.image_path) if os.path.isdir(f"{image_path}/{i}")]
 
     # Getting names of those who are not present in the database
     def get_names(self):
-        self.all_names = [i for i in os.listdir(self.image_path)]
+        print(self.all_names)
 
         # # if space is present in the name, replacing it with underscore
         # for i,name in enumerate(self.all_names):
         #     if bool(re.search(r"\s", name)):
         #         self.all_names[i] = name.replace(" ", "_")
 
-        self.student_list = [] # create a function to get student_list()
+        self.student_list = []  # create a function to get student_list()
         self.names = [i for i in self.all_names if i not in self.student_list]
         return self.names
 
@@ -25,11 +27,10 @@ class collect_image_files:
         person_dict = {}
         for name in names:
             lis = []
-            for root, dirs, files in os.walk(f"images/{name}", topdown=False):
+            for root, dirs, files in os.walk(f"image_files/{name}", topdown=False):
                 for i in files:
                     lis.append(os.path.join(root, i))
             person_dict[name] = lis
-        
 
         person_dict_encode = {}
         for name in names:
@@ -50,7 +51,7 @@ class collect_image_files:
                     lisEncode.append(faceEncode)
                     print(f"Done")
                     print()
-                
+
                 except:
                     print("Fail to detect face. Moving file to bad_file folder")
                     junk_file = os.path.basename(f)
@@ -59,19 +60,18 @@ class collect_image_files:
                     if not os.path.exists(f"./bad_files/{name}"):
                         os.makedirs(f"./bad_files/{name}")
                     shutil.move(
-                        f"./images/{name}/{junk_file}", f"./bad_files/{name}/{junk_file}"
+                        f"./image_files/{name}/{junk_file}", f"./bad_files/{name}/{junk_file}"
                     )
                     print()
                     pass
             print()
             print(f"Done : {name}")
-            print("="*100)
+            print("=" * 100)
             person_dict_encode[name] = lisEncode
         return person_dict_encode
 
-                
-
-                    
 
 # get names
-# print(collect_image_files("images").get_face_encode())
+# print(collect_image_files("image_files").get_face_encode())
+c = CollectImageFiles(image_path="D:/GitHub/Face_Recognition_Attendance/image_files")
+c.get_names()
