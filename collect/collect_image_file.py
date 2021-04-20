@@ -3,12 +3,14 @@ import re
 import face_recognition
 from cv2 import cv2
 import shutil
+from database.mongodb import MongoDB
 
 
 class CollectImageFiles:
     def __init__(self, image_path):
         self.image_path = image_path
         self.all_names = [i for i in os.listdir(self.image_path) if os.path.isdir(f"{image_path}/{i}")]
+        self.student_db = MongoDB(data_base="Student", collection="face_encode")
 
     # Getting names of those who are not present in the database
     def get_names(self):
@@ -19,7 +21,7 @@ class CollectImageFiles:
         #     if bool(re.search(r"\s", name)):
         #         self.all_names[i] = name.replace(" ", "_")
 
-        self.student_list = []  # create a function to get student_list()
+        self.student_list = self.student_db.get_student_list()
         self.names = [i for i in self.all_names if i not in self.student_list]
         return self.names
 
@@ -71,7 +73,4 @@ class CollectImageFiles:
         return person_dict_encode
 
 
-# get names
-# print(collect_image_files("image_files").get_face_encode())
-c = CollectImageFiles(image_path="D:/GitHub/Face_Recognition_Attendance/image_files")
-c.get_names()
+
