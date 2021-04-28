@@ -22,3 +22,10 @@
 2021-04-20/13:56:09		Name : Robert_Downey_Jr >>> Inserting face encode to database
 2021-04-20/13:56:09		Name : Tom_Holland >>> Inserting face encode to database
 2021-04-20/13:56:09		Inserting Face Encode
+2021-04-20/16:31:44		Inserting face encode started
+2021-04-20/16:31:44		Name : Chris Evans >>> Inserting face encode to database
+2021-04-20/16:31:44		Name : Chris_Hemsworth >>> Inserting face encode to database
+2021-04-20/16:31:44		Name : Chris_Pratt >>> Inserting face encode to database
+2021-04-20/16:31:44		Name : Robert_Downey_Jr >>> Inserting face encode to database
+2021-04-20/16:31:44		Name : Tom_Holland >>> Inserting face encode to database
+2021-04-20/16:31:44		Inserting Face Encode

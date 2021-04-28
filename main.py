@@ -1,6 +1,6 @@
-from flask import Flask, request, render_template
-from collect.collect_image_file import CollectImageFiles
-from database.mongodb import MongoDB
+from flask import Flask, render_template
+from collect.collect_image_webcam import CollectFromWebCam
+from take_attendance.attendance_webcam import TakeAttendance
 
 app = Flask(__name__)
 
@@ -10,20 +10,38 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/collect_images", methods=["GET"])
-def collect_images():
+@app.route("/collect_face_webcam", methods=["GET"])
+def collect_face_webcam():
     try:
-        collect = CollectImageFiles("image_files")
-        names = collect.get_names()
-        db = MongoDB(data_base="Student", collection="face_encode")
-        personFaceEncode = collect.get_face_encode(names)
-        _ = db.insert_face_encode(face_encode_dict=personFaceEncode)
+        person_name = str(input("Enter the name: "))
+        get_face = CollectFromWebCam(person_name=person_name)
+        _ = get_face.capture_face()
 
 
     except Exception as e:
         print(e)
 
     return render_template("index.html")
+
+
+@app.route("/collect_face_video", methods=["GET"])
+def collect_face_video():
+    try:
+        person_name = str(input("Enter the name: "))
+        get_face = CollectFromWebCam(person_name=person_name)
+        _ = get_face.capture_face()
+
+
+    except Exception as e:
+        print(e)
+
+    return render_template("index.html")
+
+
+@app.route("/take_attendance", methods=["GET"])
+def takeattendance():
+    attendance_class = TakeAttendance()
+    _ = attendance_class.take_attendance()
 
 
 if __name__ == "__main__":

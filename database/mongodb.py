@@ -10,7 +10,7 @@ class MongoDB:
         self.client = pymongo.MongoClient(self.default_connection_url)
         self.db = self.client[data_base]
         self.collection = self.db[collection]
-        self.log_file = open("logs/insert_face_encode.txt", "+a")
+        self.log_file = open("../logs/insert_face_encode.txt", "+a")
         self.log_writer = AppLogger()
 
     def insert_face_encode(self, face_encode_dict):
@@ -52,13 +52,15 @@ class MongoDB:
             face_encode = encode[1]
             result = []
             face_encode_match = face_recognition.compare_faces(face_encode, encodeFace)
+            print(max(face_encode_match))
             face_exist.append(max(face_encode_match))
+
             if max(face_encode_match):
                 person_name = name
-
+        print(max(face_exist))
         return max(face_exist), person_name
 
-    def check_if_student_present_in_attendance(self,student_name):
+    def check_if_student_present_in_attendance(self, student_name):
         cursor = self.collection.find({})
         name_list = []
         for document in cursor:
